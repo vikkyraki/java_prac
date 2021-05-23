@@ -1,0 +1,11 @@
+keywords -> 53 in java
+
+reference types vs value types
+
+There are two kinds of memory used in Java. These are called stack memory and heap memory.
+Stack memory stores primitive types and the addresses of objects. The object values are stored in heap memory.
+An object reference on the stack is only an address that refers to the place in heap memory where that object is kept.
+
+
+
+

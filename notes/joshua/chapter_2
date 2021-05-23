@@ -1,0 +1,130 @@
+
+
+Consider static factory methods instead of constructors
+
+Advantages:
+    unlike constructors, they have names, easier to read
+    unlike constructors, they are not required to create a new object each time they’re invoked.
+    unlike constructors, they can return an object of any subtype of their return type.
+        One application of this flexibility is that an API can return objects without making their classes public
+        Return classes can vary from time to time, It does not affect anything
+
+Dis:
+    The main limitation of providing only static factory methods is that classes without public or protected constructors cannot be subclassed.
+
+
+Some of the static factory classes in java:
+    String
+    Optional
+    Collections -> cannot instantiate this class
+
+****************************************************************************************************
+
+Builder pattern
+
+Normally, if we need to create multiple constructors based on paramters, then we generally use the telescoping constructor
+but there are some problems with this,  developer need to remember the order, and need to be careful
+better approach is builder pattern
+
+Class A() {
+    class ABuilder() {
+
+        A build(ABuilder) {
+            setParamsinA();
+        }
+
+    }
+}
+
+***************************************************************************************************************************
+
+Enforce the singleton property with a private constructor or an enum type
+    One advantage of the static factory approach is that it gives you the flexibility
+    to change your mind about whether the class is a singleton without changing its
+    API. The factory method returns the sole instance, but it could be modified to
+    return, say, a separate instance for each thread that invokes it.
+
+***************************************************************************************************************************
+
+Enforce noninstantiability with a private constructor:
+
+    side effect : it can't be subclassed, as sub classes call the super() i.e parents constructor
+
+***************************************************************************************************************************
+
+Prefer dependency injection to hardwiring resources
+
+// Inappropriate use of singleton - inflexible & untestable!
+public class SpellChecker {
+    private final Lexicon dictionary = ...;
+    private SpellChecker(...) {}
+    public static INSTANCE = new SpellChecker(...);
+    public boolean isValid(String word) { ... }
+    public List<String> suggestions(String typo) { ... }
+}
+
+
+Neither of these approaches is satisfactory, because they assume that there is
+only one dictionary worth using. In practice, each language has its own dictionary,
+and special dictionaries are used for special vocabularies. Also, it may be
+desirable to use a special dictionary for testing. It is wishful thinking to assume
+that a single dictionary will suffice for all time.
+
+Static utility classes and singletons are inappropriate for
+classes whose behavior is parameterized by an underlying resource.
+
+6**************************************************6************************************************************************
+
+Avoid creating unnecessary objects
+
+You can often avoid creating unnecessary objects by using static factory meth-
+ods (Item 1) in preference to constructors on immutable classes that provide both.
+For example, the factory method Boolean.valueOf(String) is preferable to the
+constructor Boolean(String) , which was deprecated in Java 9. The constructor
+must create a new object each time it’s called, while the factory method is never
+required to do so and won’t in practice. In addition to reusing immutable objects,
+you can also reuse mutable objects if you know they won’t be modified.
+
+
+// Hideously slow! Can you spot the object creation?
+private static long sum() {
+    Long sum = 0L;
+    for (long i = 0; i <= Integer.MAX_VALUE; i++)
+        sum += i;
+return sum;
+}
+
+time : 6.3 seconds, every time i added to sum, Long instance are created,  so time increased.
+changing Long to long saves time
+
+prefer primitives to boxed primitives, and watch out for unintentional autoboxing.
+
+7**************************************************************************************************************************
+
+Eliminate obsolete object references, check page 26 for code
+
+Memory leak in the code ..
+    if stack grows and shrinks, objects that were popped will not be collected by gc,
+        i.e because stack contains obsolete references to these objects.
+         An obsolete reference is simply a reference that will never be dereferenced again.
+
+     The fix for this sort of problem is simple: null out references once they
+     become obsolete
+
+     https://dzone.com/articles/memory-leak-andjava-code#:~:text=In%20Java%2C%20we%20call%20it,unnecessary%20after%20they%20are%20popped.
+
+
+8**************************************************************************************************************************
+
+Finalizers are unpredictable, often dangerous, and generally unnecessary.
+The Java 9 replacement for finalizers iscleaners. Cleaners are less dangerous than finalizers, but still unpredictable,slow, and generally unnecessary.
+
+The promptness with which finalizers and cleaners are executed is primarily a function of the garbage collection algorithm,
+
+ignored this, read later
+
+9****************************************************************************************************************************
+
+Prefer try -with-resources to try - finally
+
+ignore this, read later

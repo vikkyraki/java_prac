@@ -1,0 +1,25 @@
+boolean -> 1 bit -> 1/0
+char -> 2 bytes -> 16 bits -> UNICODE
+
+byte -> 8 bits .. -128 .. 127
+short -> 16 bits .. -32768 .. 32767
+int -> 32 bits
+long -> 64 bits
+
+float -> 4 bytes
+double -> 8 bytes
+
+float :
+
+32 -> 1(signed) + 8(exponent) + 23 (significand)
+64 -> 1(signed) + 11(exponent) + 52
+
+float vs double which to use -> double performance is higher, java library math functions are written in java, and double speed with cpu is high
+
+String: large number of characters -> max num -> limited by memory or MAX_VALUE of int
+
+casting..
+
+    small to big automatically converted by compiler.
+    when two different types are used in expression, then the smaller one is automatically casted to the bigger one and then the operation is performed.
+

@@ -1,0 +1,22 @@
+abstraction :
+    what needs to be implemented -> we dont care how they are implemented
+    List, anyone can implement New DS, but they should implement methods from List, and we dont care how they implement them.
+
+abstract:
+    they can't be instantiated
+    they can have normal methods, which are common functionality across all implementations .. similar to inheritance but there should be atleast one abstract class.
+
+    they can have constructors .. as they have instace variable, non abstract methods, so we need to properly initialize them
+    the methods can be private/public..
+
+
+interface:
+    just a bunch methods definitions
+    they can't be instantiated
+    complete abstract class
+
+    methods -> default : abstract, public
+    attributes -> public static final
+
+
+

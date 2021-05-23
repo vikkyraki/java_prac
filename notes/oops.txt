@@ -1,0 +1,96 @@
+oops:
+    encapsulation : hiding data from the other classes
+    inheritance
+    polymorphism
+    abstraction
+
+classes: blue print
+    object :
+
+    constructors
+    destructors
+
+class:
+
+state : attributes
+behaviour : methods
+
+Normally, if no constructor is there, compiler places constructor into the code.
+If any parameterized constructor is there, then compiler will not add any empty constructor..
+
+While extending classes, compiler will add super() in the top of child's class constructor
+
+Java, mutiple classes cannot be inherited..
+in cpp, this is posible but diamond problem occurs( C extends A,B => A,B have same function name => C.funcName() throws error)
+
+
+default -> only in same package
+private -> only in same class
+protected -> only children classes
+public -> all classes
+
+super .. refers to parent class
+this .. refers to current class
+
+call to super() will be first thing in the constructor
+constructor can call to this() or super(), and it cannot call both at a same time
+
+inheritance types :
+
+single       ->  A extends B
+Multiple     ->  A extends B,C, (in java no support for this)
+multilevel -> A extends B, B extends C
+Hieriachial -> B extends A, C extends A
+
+Let us say A class has function,  public drive, B extends A, now B has function, protected drive .. this gives exception, where as giving higher priority works
+
+A {
+    public drive() {}
+}
+
+B extends A {
+    protected/private drive() {} -> this gives exception
+}
+
+
+constructor chaining .. used in srp crteria building
+
+A(a) {this(a,null,null)}
+A(a,b) {this(a, b, null)}
+A(a,b,c) {this(a,b,c)}
+
+**************************************************************************************************************
+
+  :
+    Composition -> part of relationship
+                    both entities dependent on each other
+                    When composition exist, the composed object cannot exist without other entity
+
+    Aggregation -> has-a relationship ,
+                departments can have students but vice versa not possible
+                unidirectional
+                both entities can individually exist, ending one entity does not end other
+
+
+
+**********************************************************************************************************
+
+Polymorphism
+
+many forms
+
+every reference -> stores 2 pointers
+                        pointer to table, which holds methods of object and pointer to class object
+                        pointer to heap memory, where data is stored.
+
+one vtable for each class, same for all objects
+
+    vtable car created,
+            Name, Address and Description
+
+    vtable for child class,
+            copy entries from base class and also adds a new entry for the overloaded versions.
+
+******************************************************************************************************************
+
+

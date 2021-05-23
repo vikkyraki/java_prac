@@ -1,0 +1,82 @@
+
+
+Volatile keyword
+
+Let us say, they are 2 codes
+flag  = 0;
+/////
+flag = 1                      while(flag) { break;}
+
+thread - 1                    thread-2
+
+now these two codes are ran by 2 different threads
+
+when thread 1 updates the flag value, the thread 2 does not no it, as flag is updated in local cache
+to overcome this problem, volatile keyword is used. volatile will make sure value is updated in the shared cache, then in the pertinent cache.
+
+core 1          core 2
+local cache      local cache
+    shared cache
+
+Thread pool executor -> collection pool of threads
+
+4 types of executors
+    1. Fixed Thread pool executor
+
+        uses linkedBlockingQueue, unbounded queue to store all tasks
+
+
+         blocking queue contains process,
+         threads takes the task from queue
+
+    2. Scheduled Thread pool
+
+        uses delayedworkQueue, special queue dealing with schedules/delays
+
+        same as cached thread pool
+        but this provides extra functionality for scheduling at some times, fixed delay etc...
+
+
+    3. Cache Thread pool
+
+        uses Synchronous Queue, only one slot
+
+        only one space is available for storing process.
+        As soon as process comes, if a thread is available then it gives the task to thread
+        else it creates a new thread and assigns it to new thread
+
+        max threads, technically INT_MAX
+
+        keepAlivetime -> 60 seconds, as threads may grow indefinitely, they are killed wrt to keepAliveTime
+
+    4. Single Thread Executor
+        only thread is used
+
+parameters:
+    corePoolSize -> minimum/ base size of the pool
+    maxPoolSize -> max size of pool
+    keepAliveTime -> max time to keep thread alive, it is not running
+    workQueue ->  type of queue
+    threadFactory -> used to create new threads
+    handler -> rejected Execution Handler -> call backs to use, when tasks is rejected.
+
+Rejection Policies : read later
+
+
+
+*******************************************************************************************************************
+
+CountDownLatch ..
+    CountDownLatch cdl = new CountDownLatch(10);
+    cdl.await() -> this waits until the count becomes 0.
+    this is useful for waiting at one point, until all the threads have executed the cdl.decrease()
+
+Cyclic Barrier
+    Let us say they are 3 process printing some data, they need to print the data at same time..
+    so  CyclicBarrier cb = new CyclicBarrier()
+
+    cb.await() is return in all 3 processes.
+    all will wait, if all of them reach that point, then three processes will continue the execution.
+
+Phaser
+    this can do the both tasks ( Countdownlatch and Cyclic Barrier)

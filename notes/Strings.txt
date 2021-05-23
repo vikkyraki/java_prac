@@ -1,0 +1,32 @@
+
+String ..
+
+immuatble
+
+It is immutable because:
+    in string pools, only same value will be stored once.
+    multiple references may point to the same data, so changing the data will affect others, so they are immutable.
+
+String s = "Raki" , raki will be stored in memory (string poop in heap)
+
+s.concat("raki"), old string will not be deleted -> Raki, Rakiraki .. both will be present in heap
+s -> Rakiraki
+
+while(!s.empty()) {
+    s = s.concat("Raki");
+    // every string will be stored in memory, this leads to gc and performance issues.
+}
+
+
+Mutable strings .. StringBuffer and StringBuilder
+
+SB sb = new SB();
+sb.append("raki");
+sb.append("Raki"):
+
+only rakiRaki will be there in the memory pool.
+
+
+both StringBuffer and StringBuilder are same, except that StringBuffer is syncronized and thread safe
+
+Generally multiple threads wont append to strings, so people use String Builder

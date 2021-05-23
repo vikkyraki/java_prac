@@ -1,0 +1,40 @@
+JDK comes in many flavours,
+many vendors and many versions
+
+
+versions :
+
+Normal versions come every 6 months, and their support ends after 6 months.
+LTS versions comes every 3 years, and their support time is large.
+
+So companies generally prefer lts versions, so as they frequently dont change their code for compatibility issues.
+
+JDK 11 -> SEP 2018
+JDK 12 -> MAR 2019
+.
+.
+.
+JDK 17 -> SEP 2021, LTS
+
+
+vendors:
+
+JDK:
+Oracle
+    Commercial
+    Open JDK
+
+Amazon corretto
+    this is currently used on all amazon production servers
+    heavily tested
+    James gosling works in amazon
+
+RedHat
+AZUL -> Zing
+
+JVM:
+
+https://www.youtube.com/watch?v=uT8z1PuW5jE
+
+Hotspot -> commonly used aroud world
+OpenJ9 -> less memory hungry

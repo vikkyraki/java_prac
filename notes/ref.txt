@@ -1,0 +1,34 @@
+
+they are 4 types of reference in java
+
+1. strong reference
+
+    Emp e = new Emp("1"); // default it is strong reference
+    e = null
+
+    now nothing is referring to object in memory, so e will be killed by gc.
+
+2. weak reference
+    Emp e = new Emp("1")
+    WeakReference<Emp> weak = new WeakReference<Emp>(e)
+
+    now 2 references are there to the object in memory.
+    e  = null
+
+    now only weak reference exist, so in next gc this will be removed.
+
+3. soft reference
+
+    this is similar to weak reference, expect gc will remove them only when space is needed
+
+4. phantom reference (read properly)
+        Emp e = new Emp("1")
+        ReferenceQueue<Emp> refQueue = new ReferenceQueue<Emp>;
+        PhantomReference<Emp> phantom = new PhantomReference<Emp>(emp, refQueue)
+
+        phantom.get() -> always get null
+
+       Use Cases:
+            use instead of finalize in some cases
+
+

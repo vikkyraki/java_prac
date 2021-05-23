@@ -1,0 +1,12 @@
+we can't instance methods, keywords, this, super
+
+
+instance methods :
+    need object to use them
+    they can access instance methods, variables, static methods and static variables directly
+
+static:
+    attributes : shared b/w instances. updated value will be the last changed value
+    methods : cannot access instance methods, values
+    classes
+    blocks // this will come first, then the constructor works

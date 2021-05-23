@@ -1,0 +1,33 @@
+
+method uses : organised maintained reusability
+overloading
+
+1. no of arguments different
+2. order of arguments different
+3. return type different ( .. this is wrong, not considered, this will throw error)
+
+uses:
+
+1. no need to remember lot of function names,
+    reusability also
+        println("Hello")
+        println(4)
+        println(5.0)
+
+
+Method overloading -> compiler time polymorphism ( compiler calls based on functin name, arguments, return type)
+    multiple classes having same name with different arguments or return type:
+    both static and instance methods can be overloaded
+Method overriding -> runtime polymorphism
+    method to be called is  decided at run time by JVM
+    only instance can be overrided
+    can't have a lower access modifier
+    same name and same arguments, return type can be subclass of parent return type
+
+
+
+
+
+
+
+

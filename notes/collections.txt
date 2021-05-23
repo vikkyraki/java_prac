@@ -1,0 +1,44 @@
+array ..
+    we need to define size at init
+    to increase size
+    we need to resize array O(n)
+
+
+ArrayList ..
+    Class this implements List, extends AbstractList
+    public class ArrayList<E> extends AbstractList<E> implements List<E>, RandomAccess, Cloneable, Serializable {
+
+List ..
+    Interface, this implements Collections
+
+LinkedList ..
+    public class LinkedList<E> extends AbstractSequentialList<E> implements List<E>, Deque<E>, Cloneable, Serializable {
+
+Map
+    HashTable : synchronized
+    HashMap
+        default, buckets: 16, load factor : 0.75
+
+        when size is 75% of buckets, rehashing takes place, i.e buckets are doubled.
+
+        B1 -> LL
+        B2 -> (k1,v1) -> (K2,V2)
+
+        if load factor is more, then more collisions happen
+        if load factor is less, then more space is wasted.
+
+        in java 8, improvement has came, if number of nodes in same bucket crosses some limit, then LL is converted in Red Black tree.(treeify threshold)
+
+    TreeMap
+    LinkedHashMap
+
+    Normal Hashmap is not thread safe and they throw ConcurrentModificationException, when multiple threads are handling them
+
+    SynchronisedHashMap
+        thread safe but when some one is updating, lock is placed on entire may, so performance will be largely affected
+    ConcurrentHashMap
+        to increase the performance, this is introduced.
+
+        buckets are called segments.
+        on each update, reentrant locks are placed on only that pertinent segment, thus performance is improved.
+        when locks are placed, only upcoming writes will be blocked, reads can happen simultaneously
