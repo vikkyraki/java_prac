@@ -31,6 +31,11 @@ Map
 
     TreeMap
     LinkedHashMap
+        order is maintained by having an double linked list, all nodes are connected using front and back ptrs
+    IdentityHashMap
+        .equals is not applied, only == is used for comparng objects
+    WeakHashMap
+        manintains weak references instead of strong reference.
 
     Normal Hashmap is not thread safe and they throw ConcurrentModificationException, when multiple threads are handling them
 

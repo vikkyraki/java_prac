@@ -1,0 +1,83 @@
+
+some jargons:
+    Mark and Sweep:
+        What this means is that after the marking phase has completed all space occupied by
+        unvisited objects is considered free and can thus be reused to allocate new objects.
+
+        The approach requires using the so called free-list recording of every free region and its size.
+        The management of the free-lists adds overhead to object allocation. Built into this approach is another weakness –
+        there may exist plenty of free regions but if no single region
+        is large enough to accommodate the allocation, the allocation is still going to fail (with an OutOfMemoryError in Java).
+
+        https://plumbr.io/app/uploads/2015/06/GC-sweep.png
+
+    Mark sweep Compact:
+
+        all marked – and thus alive – objects to the beginning of the memory region.
+
+        The downside of this approach is an increased GC pause duration as we need to copy all objects to a new place and to
+        update all references to such objects. The benefits to Mark and Sweep are also visible –
+        after such a compacting operation new object allocation is again extremely cheap via pointer bumping.
+
+        https://plumbr.io/app/uploads/2015/06/GC-mark-sweep-compact.png
+
+
+    mark copy
+        marked
+
+        generally there are two places..
+        only one is used at one time.
+
+        marked in one place, all live objects will be moved into new memory.
+
+        adv: marking and copying can occur simultaneously.
+        dis: another space should be big
+
+        https://plumbr.io/app/uploads/2015/06/GC-mark-and-copy-in-Java.png
+
+
+
+Algo's
+
+    Serial
+        YG : Mark-Copy, OG : mark-sweep-compact
+        single thread
+
+    Parallel
+       YG : Mark-Copy, OG : mark-sweep-compact
+       multiple threads
+
+       used when high throughput is required
+
+    CMS
+       YG : Mark-Copy, OG : mark-sweep
+
+       designed to avoid long pauses, even though there is some performance hit
+            it does not compact the memory as in Parallel
+            most of work is done concurrently along with Mark-sweep
+
+            1/4 threads application threads are used.
+
+            increases latency
+
+    G1GC
+        Main aim of this is:
+            to predict and configure the stop the world limits
+            You can request the stop-the-world pauses to be no longer than x milliseconds within any given y-millisecond long time range
+
+        heap does not build into 2 segments,rather than multiple segments (eden, survivor, old)
+
+        This allows the GC to avoid collecting the entire heap at once,
+        and instead approach the problem incrementally: only a subset of the regions, called the collection set will be considered at a time.
+
+        https://plumbr.io/app/uploads/2015/06/g1-02-591x187.png
+
+        All the Young regions are collected during each pause, but some Old regions may be included as well:
+
+        Another novelty of G1 is that during the concurrent phase it estimates the amount of live data that each region contains.
+        This is used in building the collection set: the regions that contain the most garbage are collected first. Hence the name: garbage-first collection.
+
+
+    ZGC
+    Shenandoah
+    
